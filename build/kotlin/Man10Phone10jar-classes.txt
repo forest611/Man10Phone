@@ -1,0 +1,1 @@
+E:\plugin\Plugins\1.12\Man10Phone\build\classes\kotlin\main\red\man10\man10phone\Man10Phone$App.class;E:\plugin\Plugins\1.12\Man10Phone\build\classes\kotlin\main\red\man10\man10phone\Man10Phone$onCommand$1.class;E:\plugin\Plugins\1.12\Man10Phone\build\classes\kotlin\main\red\man10\man10phone\Man10Phone.class
