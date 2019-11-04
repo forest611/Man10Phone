@@ -79,6 +79,7 @@ class Man10Phone : JavaPlugin() ,Listener {
 
     fun loadConfig(){
         apps.clear()
+        reloadConfig()
         for (i in 0..11){
             val app = App()
 
@@ -117,6 +118,7 @@ class Man10Phone : JavaPlugin() ,Listener {
         if (e.inventory.title != version)return
         val player = e.whoClicked as Player
         e.isCancelled = true
+        if (e.currentItem == null)return
         if (e.currentItem.itemMeta == null)return
         for (a in apps.values){
             if (a.title == e.currentItem.itemMeta.displayName){
@@ -127,6 +129,7 @@ class Man10Phone : JavaPlugin() ,Listener {
                     break
                 }
                 player.performCommand(a.cmd)
+                player.closeInventory()
                 break
             }
         }
