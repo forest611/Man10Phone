@@ -21,11 +21,11 @@ class Man10Phone : JavaPlugin() ,Listener {
 
     override fun onEnable() {
         saveDefaultConfig()
-
-        // Plugin startup logic
-        menu = createHomeMenu()
-        loadConfig()
         server.pluginManager.registerEvents(this,this)
+
+        menu = createHomeMenu()
+
+        loadConfig()
 
     }
 
@@ -35,7 +35,7 @@ class Man10Phone : JavaPlugin() ,Listener {
             return false
         }
 
-        if (sender.hasPermission("mphone.op"))return true
+        if (!sender.hasPermission("mphone.op"))return true
 
         if (args == null || args.isEmpty()){
             openPhone(sender)
@@ -95,8 +95,8 @@ class Man10Phone : JavaPlugin() ,Listener {
     fun createHomeMenu():Inventory{
         val inv = Bukkit.createInventory(null,54,version)
 
-        val pane1 = ItemStack(Material.STAINED_GLASS_PANE,1,8)
-        val pane2 = ItemStack(Material.STAINED_GLASS_PANE,3,8)
+        val pane1 = ItemStack(Material.STAINED_GLASS_PANE,1,7)
+        val pane2 = ItemStack(Material.STAINED_GLASS_PANE,1,3)
 
 
         val list1 = mutableListOf(0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,44,45,53)
