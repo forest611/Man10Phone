@@ -1,6 +1,9 @@
 name: Man10Phone
-version: 1.0
+version: @version@
 main: red.man10.man10phone.Man10Phone
+depend:
+  - Man10CommonLibs
+api-version: 1.13
 commands:
   mphone:
     default: op
