@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 
 group = 'red.man10'
-version = '1.0-UNDERDEV'
+version = '14.0'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
