@@ -1,9 +1,6 @@
 package red.man10.man10phone
 
 import com.github.syari.spigot.api.util.item.displayName
-import net.md_5.bungee.api.chat.BaseComponent
-import net.md_5.bungee.api.chat.ComponentBuilder
-import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.command.Command
@@ -15,7 +12,6 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
-import java.awt.Component
 
 class Man10Phone : JavaPlugin(), Listener {
 
