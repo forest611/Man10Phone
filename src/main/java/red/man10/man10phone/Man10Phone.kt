@@ -15,9 +15,10 @@ import org.bukkit.plugin.java.JavaPlugin
 class Man10Phone : JavaPlugin() ,Listener {
 
 
-    val apps = HashMap<Int,App>()
+    private val apps = HashMap<Int,App>()
     lateinit var menu : Inventory
-    val version = "mOS 1.2"
+    private val version = "mOS 1.2"
+    private val slot = mutableListOf(20,22,24,29,31,33,38,40,42,47,49,51)
 
     override fun onEnable() {
         saveDefaultConfig()
@@ -43,10 +44,10 @@ class Man10Phone : JavaPlugin() ,Listener {
         }
 
         if (args[0] == "reload"){
-            Thread(Runnable {
+            Thread {
                 loadConfig()
                 sender.sendMessage("§a§lリロード完了！")
-            }).start()
+            }.start()
             return true
         }
 
@@ -57,11 +58,11 @@ class Man10Phone : JavaPlugin() ,Listener {
         // Plugin shutdown logic
     }
 
-    fun openPhone(p: Player){
+    private fun openPhone(p: Player){
 
         val inv = menu
 
-        val slot = mutableListOf(20,22,24,29,31,33,38,40,42,47,49,51)
+
 
         for (app in apps){
             val a = app.value
@@ -77,7 +78,7 @@ class Man10Phone : JavaPlugin() ,Listener {
 
     }
 
-    fun loadConfig(){
+    private fun loadConfig(){
         apps.clear()
         reloadConfig()
         for (i in 0..11){
@@ -93,7 +94,7 @@ class Man10Phone : JavaPlugin() ,Listener {
         }
     }
 
-    fun createHomeMenu():Inventory{
+    private fun createHomeMenu():Inventory{
         val inv = Bukkit.createInventory(null,54,version)
 
         val pane1 = ItemStack(Material.GRAY_STAINED_GLASS_PANE,1)
