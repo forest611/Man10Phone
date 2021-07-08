@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Man10Phone">
+    <output-path>$PROJECT_DIR$/../../paper/plugins/</output-path>
+    <root id="archive" name="Man10Phone.jar">
+      <element id="module-output" name="Man10Phone.main" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+    </root>
+  </artifact>
+</component>

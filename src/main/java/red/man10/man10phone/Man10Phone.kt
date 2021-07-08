@@ -62,14 +62,13 @@ class Man10Phone : JavaPlugin() ,Listener {
 
         val inv = menu
 
-
-
         for (app in apps){
-            val a = app.value
-            val icon = ItemStack(a.type,1,a.damage.toShort())
+            val data = app.value
+            val icon = ItemStack(data.type,1)
             val meta = icon.itemMeta
-            meta.setDisplayName(a.title)
-            meta.lore = a.lore
+            meta.setDisplayName(data.title)
+            meta.setCustomModelData(data.customModelData)
+            meta.lore = data.lore
             icon.itemMeta =meta
             inv.setItem(slot[app.key],icon)
         }
@@ -87,8 +86,9 @@ class Man10Phone : JavaPlugin() ,Listener {
             app.title = config.getString("$i.title")!!
             app.lore = config.getStringList("$i.lore")
             app.type = Material.valueOf(config.getString("$i.type")!!)
-            app.damage = config.getInt("$i.damage",0)
+            app.customModelData = config.getInt("$i.customModelData",0)
             app.cmd = config.getString("$i.cmd")!!
+            app.serverCmd = config.getString("$i.serverCmd")!!
 
             apps[i] = app
         }
@@ -116,13 +116,15 @@ class Man10Phone : JavaPlugin() ,Listener {
 
     @EventHandler
     fun inventoryClick(e:InventoryClickEvent){
-        if (e.inventory.toString() != menu.toString())return
+        if (e.view.title != version)return
         val player = e.whoClicked as Player
         e.isCancelled = true
-        if (e.currentItem == null)return
-        if (e.currentItem!!.itemMeta == null)return
+
+        val item = e.currentItem ?:return
+
+        if (item.itemMeta == null)return
         for (a in apps.values){
-            if (a.title == e.currentItem!!.itemMeta.displayName){
+            if (a.title == item.itemMeta.displayName){
                 if (!player.isOp){
                     player.isOp = true
                     player.performCommand(a.cmd)
@@ -130,6 +132,7 @@ class Man10Phone : JavaPlugin() ,Listener {
                     break
                 }
                 player.performCommand(a.cmd)
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),a.serverCmd)
                 player.closeInventory()
                 break
             }
@@ -140,8 +143,9 @@ class Man10Phone : JavaPlugin() ,Listener {
         var title = ""
         var lore = mutableListOf<String>()
         var type = Material.STONE
-        var damage = 0
+        var customModelData = 0
         var cmd = ""
+        var serverCmd = ""
 
     }
 }
